@@ -1,0 +1,9 @@
+pymongo
+fastapi
+locust
+requests
+boto3
+pytest
+motor
+uvicorn
+aiocache

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "263479750192",
+    "firebase_url": "https://argon-37615-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "argon-37615",
+    "storage_bucket": "argon-37615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263479750192:android:2a7544cec9bc0ffc6cc7f5",
+        "android_client_info": {
+          "package_name": "com.example.swappify_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263479750192-tln9uaki1glbql2micf7pru6bamh3sou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swappify_app",
+            "certificate_hash": "33c23f4bccf6a65e18af0059850f1adad746a16c"
+          }
+        },
+        {
+          "client_id": "263479750192-ffflgcvf67dvsjhhsq2kq7laeug249iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-cD4SafpFScRLd0xF3iMvv37uJ6j_1k4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263479750192-5dcv64kc11vuekrsc5r10c4oif36is9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

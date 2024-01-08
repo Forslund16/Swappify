@@ -1,0 +1,57 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  run-python-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up MongoDB
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+          mongodb-version: 4.4
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install requirements
+        run: |
+          pip install -r Test/TestServer/requirements.txt
+      - name: Copy SSL certificates
+        run: |
+          cp Server/cert.pem Server/key.pem .
+      - name: Start Python Server
+        run: |
+          python Server/server.py &
+        env:
+          SERVER_PID: $!
+      - name: Wait for server to start
+        run: sleep 10
+      - name: Start Locust test
+        run: |
+          locust -f Test/TestServer/Locustfile.py --host=https://localhost:5000 --run-time=1m --headless --users=10 --spawn-rate=1
+        env:
+          LOCUST_PID: $!
+      - name: Wait for locust to complete
+        run: sleep 10
+      - name: Stop Locust
+        if: always()
+        run: kill $LOCUST_PID || true
+      - name: Start pytest
+        run: pytest Test/TestServer/ServerUnitTest.py
+      - name: Stop server
+        if: always() # ensure this step is executed even if a previous step fails
+        run: kill $SERVER_PID $LOCUST_PID || true
+    env:
+      PORT: 5000

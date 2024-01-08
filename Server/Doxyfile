@@ -1,0 +1,13 @@
+# Doxyfile for Python
+
+# Set the input files
+INPUT = server.py
+
+# Set the output directory
+OUTPUT_DIRECTORY = doc
+
+EXTRACT_ALL = YES
+
+# Set the output format
+GENERATE_HTML = YES
+GENERATE_LATEX = NO
